@@ -1,0 +1,41 @@
+version: "3.8"
+services:
+  app:
+    build: .
+    command: app.py
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    links:
+      - "db:database"
+    networks:
+      - backend
+
+  db:
+    image: mysql:latest
+    restart: always
+    ports:
+      - "3308:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      #MYSQL_USER: root
+      #MYSQL_PASSWORD: rootpassword
+      MYSQL_DATABASE: flaskapp
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/:ro
+    #command: mysqld --init-file="/tmp/database/init.sql"
+    # command: [ "--default-authentication-plugin=mysql_native_password" ]
+    networks:
+      - backend
+networks:
+    backend:
+      ipam:
+        driver: default
+        config:
+            - subnet: 172.16.23.0/24
+
+
+volumes:
+    app:
+    database:
