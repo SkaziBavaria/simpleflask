@@ -1,14 +1,5 @@
-mysql_host: 'db' #'localhost'
+mysql_host: 'db' 
 mysql_user: 'root'
 mysql_password: 'rootpassword' 
 mysql_db: 'flaskapp'
-#mysql_port: '3308'
 
-# config = {
-#         'user': 'root',
-#         'password': 'root',
-#         'host': 'db',
-#         'port': '3306',
-#         'database': 'knights'
-#     }
-#connection = mysql.connector.connect(**config)
